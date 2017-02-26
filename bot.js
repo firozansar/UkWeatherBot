@@ -9,6 +9,15 @@ bot.getMe().then(function (me) {
   console.log('Hi my name is %s!', me.username);
 });
 
+// Listen for any kind of message. There are different kinds of
+// messages.
+bot.on('message', (msg) => {
+  const chatId = msg.chat.id;
+
+  // send a message to the chat acknowledging receipt of their message
+  bot.sendMessage(chatId, 'Received your message');
+});
+
 bot.onText(/\/start/, function (msg, match) {
   var fromId = msg.from.id; // get the id, of who is sending the message
   var message = "Welcome to your WeatherBot\n"
