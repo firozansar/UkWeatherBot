@@ -20,7 +20,7 @@ const options = {
 // See: https://devcenter.heroku.com/articles/dyno-metadata
 const url = process.env.APP_URL;
 const bot = new TelegramBot(TOKEN, options);
-bot.setWebHook(`${url}/bot${TOKEN}`);
+bot.setWebHook('${url}/${TOKEN}');
 
 //var bot = new TelegramBot(token, {polling: true});
 bot.getMe().then(function (me) {
