@@ -1,10 +1,29 @@
 
 var TelegramBot = require('node-telegram-bot-api');
-var token = '332847517:AAGFPcV9pv7v83f5nl81ytAy0APFnuU5Wzw';
-var Q = require('Q');
-var request = Q.denodeify(require("request"));
+const TOKEN = process.env.TELEGRAM_TOKEN;
+//var Q = require('Q');
+//var request = Q.denodeify(require("request"));
 
-var bot = new TelegramBot(token, {polling: true});
+const options = {
+  webHook: {
+    // Port to which you should bind is assigned to $PORT variable
+    // See: https://devcenter.heroku.com/articles/dynos#local-environment-variables
+    port: process.env.PORT
+    polling: true
+    // you do NOT need to set up certificates since Heroku provides
+    // the SSL certs already (https://<app-name>.herokuapp.com)
+    // Also no need to pass IP because on Heroku you need to bind to 0.0.0.0
+  }
+};
+// Heroku routes from port :443 to $PORT
+// Add URL of your app to env variable or enable Dyno Metadata
+// to get this automatically
+// See: https://devcenter.heroku.com/articles/dyno-metadata
+const url = process.env.APP_URL;
+const bot = new TelegramBot(TOKEN, options);
+bot.setWebHook(`${url}/bot${TOKEN}`);
+
+//var bot = new TelegramBot(token, {polling: true});
 bot.getMe().then(function (me) {
   console.log('Hi my name is %s!', me.username);
 });
@@ -40,8 +59,8 @@ bot.onText(/\/weather (.+)/, function (msg, match) {
 });
 
 function getWeatherData(postcode){
-  var app_id = "3a3d348b"
-  var app_key = "f557ee8ae0b8f312c8f031e2ca5b863d"
+  var app_id = process.env.WEATHER_APP_ID;
+  var app_key = process.env.WEATHER_APP_KEY;
   var url = "http://api.weatherunlocked.com/api/current/uk."+postcode
   url += "?app_id="+app_id+"&app_key="+app_key
 
