@@ -1,8 +1,8 @@
 
 var TelegramBot = require('node-telegram-bot-api');
 const TOKEN = process.env.TELEGRAM_TOKEN;
-//var Q = require('Q');
-//var request = Q.denodeify(require("request"));
+var Q = require('Q');
+var request = Q.denodeify(require("request"));
 
 const options = {
   webHook: {
