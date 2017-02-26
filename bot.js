@@ -1,6 +1,6 @@
 
 var TelegramBot = require('node-telegram-bot-api');
-var token = 'YOUR_BOT_TOKEN';
+var token = '332847517:AAGFPcV9pv7v83f5nl81ytAy0APFnuU5Wzw';
 var Q = require('Q');
 var request = Q.denodeify(require("request"));
 
@@ -22,7 +22,7 @@ bot.onText(/\/weather (.+)/, function (msg, match) {
   var postcode = match[1];
   getWeatherData(postcode)
   .then(function(data){
-    var message = "Weather today in "+postcode+"\n";
+    var message = "Weather today in the UK postcode: "+postcode+"\n";
     message += data.wx_desc+"\n"
     message += "temp: "+data.temp_c+"C or "+data.temp_f+"F"
     bot.sendMessage(fromId, message);
@@ -31,9 +31,9 @@ bot.onText(/\/weather (.+)/, function (msg, match) {
 });
 
 function getWeatherData(postcode){
-  var app_id = "YOUR_WEATHERUNLOCKED_APP_ID"
-  var app_key = "YOUR_WEATHERUNLOCKED_APP_KEY"
-  var url = "http://api.weatherunlocked.com/api/current/us."+postcode
+  var app_id = "3a3d348b"
+  var app_key = "f557ee8ae0b8f312c8f031e2ca5b863d"
+  var url = "http://api.weatherunlocked.com/api/current/uk."+postcode
   url += "?app_id="+app_id+"&app_key="+app_key
 
   var options ={
