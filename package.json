@@ -9,9 +9,9 @@
   "author": "Firoz Ansari",
   "license": "ISC",
   "dependencies": {
-    "node-telegram-bot-api": "*",
+    "node-telegram-bot-api": "^0.27.0",
     "q": "^1.4.1",
-    "request": "^2.69.0",
+    "request": "^2.79.0",
     "underscore": "^1.8.3"
   },
   "keywords": [
