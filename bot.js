@@ -9,6 +9,7 @@ const options = {
     // Port to which you should bind is assigned to $PORT variable
     // See: https://devcenter.heroku.com/articles/dynos#local-environment-variables
     port: process.env.PORT
+    polling: true
     // you do NOT need to set up certificates since Heroku provides
     // the SSL certs already (https://<app-name>.herokuapp.com)
     // Also no need to pass IP because on Heroku you need to bind to 0.0.0.0
@@ -20,7 +21,7 @@ const options = {
 // See: https://devcenter.heroku.com/articles/dyno-metadata
 const url = process.env.APP_URL;
 const bot = new TelegramBot(TOKEN, options);
-bot.setWebHook('${url}/${TOKEN}');
+bot.setWebHook('${url}/bot${TOKEN}');
 
 //var bot = new TelegramBot(token, {polling: true});
 bot.getMe().then(function (me) {
